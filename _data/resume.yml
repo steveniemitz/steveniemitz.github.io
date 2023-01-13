@@ -1,0 +1,97 @@
+# If you have a `resume.json` file, copy it into `_data` and delete this file.
+# If you don't have a JSON Resume you can just edit this YAML file instead.
+# See also: <https://jsonresume.org/>.
+basics:
+  name: "Steve Niemitz"
+  label: "Software Engineer"
+  picture: "https://via.placeholder.com/240x240"
+  email: "steve@niemi.tz"
+  website: "https://steve.niemi.tz"
+  summary: >
+    A summary
+  location:
+    city: "Brooklyn"
+    countryCode: "US"
+    region: "New York"
+  profiles:
+    - network: "Twitter"
+      username: "steveniemitz"
+      url: "https://twitter.com/steveniemitz"
+    - network: "LinkedIn"
+      username: "Steve Niemitz"
+      url: "https://www.linkedin.com/in/steve-niemitz-0ab7305/"
+work:
+  - company: "Twitter"
+    position: "Senior Staff Engineer"
+    website: "https://www.twitter.com"
+    startDate: "2015-05-01"
+    endDate: ""
+    summary: >
+      With 8 years of experience on multiple teams at Twitter, I've had the unique opportunity 
+      to see the impact of my decisions and designs over time.  I've designed, built, and lead teams 
+      for multiple systems that push the limits of the industry.
+    highlights:
+      - ""
+  - company: "TellApart"
+    position: "Software Engineer"
+    startDate: "2014-11-01"
+    endDate: "2015-05-01"
+    summary: >
+      A Summary
+    highlights:
+      - "Built an algorithm for artist to detect if their music was violating copy right infringement laws"
+      - "Successfully won Techcrunch Disrupt"
+      - "Optimized an algorithm that holds the current world record for Weisman Scores"
+  - company: "Blackstone"
+    position: "Software Engineer"
+    startDate: "2011-10-01"
+    endDate: "2014-11-01"
+    summary: >
+      A Summary
+  - company: "CapitalIQ"
+    position: "Software Engineer"
+    startDate: "2007-08-01"
+    endDate: "2011-10-01"
+    summary: >
+      A Summary
+education:
+  - institution: "Rensselaer Polytechnic Institute"
+    area: "Computer Science"
+    studyType: "Bachelor"
+    startDate: "2003-09-01"
+    endDate: "2007-06-01"
+publications:
+  - name: "Modernizing Twitter's ad engagement analytics platform"
+    publisher: "Google"
+    releaseDate: "2020-05-18"
+    website: "https://cloud.google.com/blog/products/data-analytics/modernizing-twitters-ad-engagement-analytics-platform"
+  - name: "How Twitter Migrated its On-Prem Analytics to Google Cloud"
+    publisher: "Google Cloud NEXT"
+    releaseDate: "2018-08-09"
+    website: "https://youtu.be/sitnQxyejUg"
+  - name: "Imagine There's No Server"
+    publisher: "TellApart"
+    releaseDate: "2015-02-01"
+    website: "https://web.archive.org/web/20160310121210/https://www.tellapart.com/imagine-theres-no-server/"
+    summary: "Using Docker, Aurora, and Mesos to deploy applications at TellApart"
+skills:
+  - name: "Web Development"
+    level: "Master"
+    keywords:
+      - "HTML"
+      - "CSS"
+      - "Javascript"
+  - name: "Compression"
+    level: "Master"
+    keywords:
+      - "Mpeg"
+      - "MP4"
+      - "GIF"
+languages:
+  - language: "English"
+    fluency: "Native speaker"
+interests:
+  - name: "Wildlife"
+    keywords:
+      - "Ferrets"
+      - "Unicorns"
