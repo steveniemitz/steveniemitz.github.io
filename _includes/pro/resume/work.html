@@ -32,6 +32,40 @@
 
     {% include components/message.html class="note" text=work.summary alt="" %}
 
+
+    {% if work.roles.size > 0 %}
+    <h3 class="h4">{{ strings.resume.roles | default:"Key Roles" }}</h3>
+    {% for role in work.roles %}
+      <div>
+        <header>
+        {% if role.startDate.size > 0 %}
+        <p class="faded">
+          {% include components/from-to.html from=role.startDate to=role.endDate format=from_to_format %}
+        </p>
+        {% endif %}
+        <h4 class="h4">{{ role.name }}</h4>
+        </header>
+        {{ role.summary | markdownify }}
+      </div>
+    {% endfor %}
+    {% endif %}
+
+
+    {% if work.projects.size > 0 %}
+    <h3 class="h4">{{ strings.resume.projects | default:"Projects" }}</h3>
+    {% for project in work.projects %}
+      <div>
+        <h4 class="h4">{{ project.name }}</h4>
+        {% if project.startDate.size > 0 %}
+          <p class="faded">
+            {% include components/from-to.html from=project.startDate to=project.endDate format=from_to_format %}
+          </p>
+        {% endif %}
+        {{ project.summary | markdownify }}
+      </div>
+    {% endfor %}
+    
+    {% endif %}
     {% if work.highlights.size > 0 %}
     <h4 class="sr-only">{{ strings.resume.highlights | default:"Highlights" }}</h4>
     <ul>

@@ -29,25 +29,127 @@ work:
     summary: >
       With 8 years of experience on multiple teams at Twitter, I've had the unique opportunity 
       to see the impact of my decisions and designs over time.  I've designed, built, and lead teams 
-      for multiple systems that push the limits of the industry.
-    highlights:
-      - ""
+      for multiple systems that push the limits of the industry.  My ability to build deep 
+      cross-organizational relationships over that time allowed me to positively transform multiple 
+      organizations and improve large portions of Twitter's tech stack. 
+    roles:
+      - name: Realtime Platform Tech Lead
+        startDate: "2022-12-01"
+        summary: >
+          Tech lead for new Realtime Platform team of ~20 developers.
+
+          - Develop architecture for next generation on-prem stream processing
+
+          - Codify on-prem vs cloud recommendations
+        
+      - name: Data Processing Tech Lead
+        startDate: "2021-01-01"
+        endDate: "2022-12-01"
+        summary: >
+          In late 2020 we realized that our team (Revenue Data Platform) had an opportunity to drive significant
+          impact across more than just our org.  I, along with Revenue and Platform leadership (Director+) drafted
+          a proposal to merge our team with the existing Heron (streaming) and Scalding (batch) platform teams.
+
+
+          The merged team would have the mandate to drive next-gen data processing at Twitter using Beam (and Dataflow).
+
+
+          I was the tech lead for the overall team (20+ developers at its peak), coordinating the efforts of 
+          different sub-teams to drive our goal of beam adoption.  Over the ~2 years of running the team, Beam/Dataflow 
+          usage grew (from ~20) to 600+ batch and streaming jobs running on Dataflow across the company.
+    
+      - name: Revenue Data Platform Tech Lead
+        startDate: "2017-01-01"
+        endDate: "2022-01-01"
+        summary: >
+          Revenue Data Platform evolved from many learnings acquired working on TC&#9889;DC and was formed 
+          in 2017 with the goal of modernizing the revenue data stack
+          at Twitter.  By leveraging the cloud (Google Cloud Platform) we were able to significantly 
+          enhance how data was used by revenue teams.  
+
+          
+          The team's largest project, the Large Data Collider (LDC), completely transformed how analytic 
+          data was aggregated and queried across Twitter and continues to be used today at massive scales.
+
+
+          I was the tech lead for the team (15+ developers at its peak), coordinating and acting as the 
+          largest contributor to the development and migration of several legacy systems onto the new 
+          LDC platform over multiple years.
+
+    projects:
+      - name: Large Data Collider (LDC)
+        summary: >
+          LDC is a platform that handles aggregating and querying analytic data.  It it used at Twitter 
+          to power most user and advertiser facing analytics, such as those for tweets, ads, and videos.
+          LDC supports most common aggregation functions (sum, min, max) as well as more complex probabilistic 
+          aggregations such as unique counts via HyperLogLog, TopK via frequency sketches
+
+
+          At Twitter, LDC aggregates on the order of tens of millions of incoming events per second, and serves millions of 
+          incoming analytic queries per second over petabytes of aggregate data at extremely low latency (<100ms p99).  
+          LDC supports multiple storage backends such as Druid, Bigtable, BigQuery, and CockroachDB.
+
+
+          I designed the system, implemented most major parts of it, and built a team of 15+ developers around it.
+          Additionally, I evangelized it within Twitter to drive adoption of it both within and outside of our 
+          organization, growing it from just a few revenue datasets to 20+.
+
+      - name: Data Format Optimization
+        summary: >
+          Twitter uses [Scrooge](https://github.com/twitter/scrooge) and [Apache Avro](https://github.com/apache/avro)
+          on the JVM extensively for at-rest data storage.     
+
+      - name: Scalding to Beam Migration
+        summary: >
+          Twitter has 4,000+ batch processing jobs written in [scalding](https://github.com/twitter/scalding).
+          Developed a strategy, built a MVP, and lead a team to develop tooling to automatically translate 
+          scalding jobs into beam jobs, and run them on Dataflow with zero code changes required.
+
+          - Wrote a proposal and achieved high-level buy-in from org level leadership, 
+            including cost analysis of scalding vs dataflow and multi-year execution plan.
+          - Prototyped an AST-translation layer to translate scalding execution graphs to beam.
+          - Staffed and lead a team of 2-5 developers to drive the project post-MVP.
+          - Optimized job runtime based on profiler feedback to achieve parity with (and exceed) scalding performance.
+
+      - name: TC&#9889;DC (Twitter Cloud Data-Center)
+        summary: >
+          Summary
   - company: "TellApart"
     position: "Software Engineer"
     startDate: "2014-11-01"
     endDate: "2015-05-01"
     summary: >
-      A Summary
-    highlights:
-      - "Built an algorithm for artist to detect if their music was violating copy right infringement laws"
-      - "Successfully won Techcrunch Disrupt"
-      - "Optimized an algorithm that holds the current world record for Weisman Scores"
+      TellApart was an ad-tech company doing Dynamic Product Advertising on the major ad exchanges.  It was 
+      acquired by Twitter in 2015.  I worked on the team responsible for running AWS automation, 
+      Aurora/Mesos, and monitoring infrastructure.
+    projects: 
+      - name: Aurora/Mesos
+        summary: >
+          The TellApart infrastructure ran across 1000s of AWS instances in multiple zones.  Previously
+          developers would deploy their changes across the fleet using different bespoke scripts.  I 
+          lead the rollout of Aurora/Mesos to standardize deployments and homogenize compute resources.
+
+          I spearheaded an effort in the OSS Aurora community to add support for Docker containers to
+          Aurora, working closely with the Aurora community and eventually becoming a member of the Aurora
+          PMC.
   - company: "Blackstone"
     position: "Software Engineer"
     startDate: "2011-10-01"
     endDate: "2014-11-01"
     summary: >
-      A Summary
+      Blackstone is an Alternative Asset Management firm.  I joined in 2011 with the new CTO and 
+      worked to form a brand new software engineering team from the ground up.
+    projects: 
+      - name: BXAccess
+        summary: >
+          BXAccess is the investor-facing portal for Blackstone.  Investors could log in to get
+          documents and view their portfolios.  I lead the team, designed and implemented most
+          major functionality of the platform.
+      - name: Niagara
+        summary: >
+          Niagara is the platform that calculates the per-LP (and GP) returns for most Blackstone 
+          funds.  Accountants enter transactions into it, and it can generate various reports after
+          running 
   - company: "CapitalIQ"
     position: "Software Engineer"
     startDate: "2007-08-01"
@@ -69,6 +171,10 @@ publications:
     publisher: "Google Cloud NEXT"
     releaseDate: "2018-08-09"
     website: "https://youtu.be/sitnQxyejUg"
+  - name: "Visualizing Cloud Bigtable Access Patterns at Twitter for Optimizing Analytics (Cloud Next '18)"
+    publisher: "Google Cloud NEXT"
+    releaseDate: "2018-08-09"
+    website: "https://www.youtube.com/watch?v=3QHGhnHx5HQ"
   - name: "Imagine There's No Server"
     publisher: "TellApart"
     releaseDate: "2015-02-01"
