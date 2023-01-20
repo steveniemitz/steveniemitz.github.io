@@ -8,7 +8,10 @@ basics:
   email: "steve@niemi.tz"
   website: "https://steve.niemi.tz"
   summary: >
-    A summary
+    Over 15 years of experience in massive-scale distributed systems, databases, storage formats, 
+    and low-level optimization.  I've had a diverse career, leading teams and projects across 
+    finance, ad-tech, and social media.  
+    
   location:
     city: "Brooklyn"
     countryCode: "US"
@@ -26,33 +29,35 @@ work:
     website: "https://www.twitter.com"
     startDate: "2015-05-01"
     endDate: ""
-    summary: >
+    summary: |
       With 8 years of experience on multiple teams at Twitter, I've had the unique opportunity 
-      to see the impact of my decisions and designs over time.  I've designed, built, and lead teams 
-      for multiple systems that push the limits of the industry.  My ability to build deep 
+      to see the impact of my decisions and designs over long time periods.  I've designed, built,
+      and lead teams for multiple systems that push the limits of the industry.  My ability to build deep 
       cross-organizational relationships over that time allowed me to positively transform multiple 
       organizations and improve large portions of Twitter's tech stack. 
     roles:
       - name: Realtime Platform Tech Lead
         startDate: "2022-12-01"
-        summary: >
-          Tech lead for new Realtime Platform team of ~20 developers.
+        summary: |
+          Twitter significantly changed priorities in late 2022, and with those changes came a new team structure for
+          Data Platform.  We changed focus to primarily on-prem stream processing, with me leading the team of ~20 
+          engineers working on various projects around that.
 
-          - Develop architecture for next generation on-prem stream processing
+          The largest current ongoing project is running Flink on-prem, mainly to be used as a runner for Apache Beam.  
+          I developed an MVP, implemented most major components, and built a team around executing the work needed to run Flink in the Twitter environment on-prem.  Since Twitter primarily uses Aurora and Mesos (rather than k8s), 
+          I built an Aurora resource provider for Flink to better integrate it with the Twitter ecosystem.  
 
-          - Codify on-prem vs cloud recommendations
+          Currently (as of early 2023) there are multiple teams evaluating the Flink environment for their use-cases. 
         
       - name: Data Processing Tech Lead
         startDate: "2021-01-01"
         endDate: "2022-12-01"
-        summary: >
+        summary: |
           In late 2020 we realized that our team (Revenue Data Platform) had an opportunity to drive significant
           impact across more than just our org.  I, along with Revenue and Platform leadership (Director+) drafted
           a proposal to merge our team with the existing Heron (streaming) and Scalding (batch) platform teams.
 
-
           The merged team would have the mandate to drive next-gen data processing at Twitter using Beam (and Dataflow).
-
 
           I was the tech lead for the overall team (20+ developers at its peak), coordinating the efforts of 
           different sub-teams to drive our goal of beam adoption.  Over the ~2 years of running the team, Beam/Dataflow 
@@ -61,16 +66,14 @@ work:
       - name: Revenue Data Platform Tech Lead
         startDate: "2017-01-01"
         endDate: "2022-01-01"
-        summary: >
+        summary: |
           Revenue Data Platform evolved from many learnings acquired working on TC&#9889;DC and was formed 
           in 2017 with the goal of modernizing the revenue data stack
           at Twitter.  By leveraging the cloud (Google Cloud Platform) we were able to significantly 
           enhance how data was used by revenue teams.  
 
-          
           The team's largest project, the Large Data Collider (LDC), completely transformed how analytic 
           data was aggregated and queried across Twitter and continues to be used today at massive scales.
-
 
           I was the tech lead for the team (15+ developers at its peak), coordinating and acting as the 
           largest contributor to the development and migration of several legacy systems onto the new 
@@ -78,29 +81,79 @@ work:
 
     projects:
       - name: Large Data Collider (LDC)
-        summary: >
+        summary: |
           LDC is a platform that handles aggregating and querying analytic data.  It it used at Twitter 
           to power most user and advertiser facing analytics, such as those for tweets, ads, and videos.
           LDC supports most common aggregation functions (sum, min, max) as well as more complex probabilistic 
           aggregations such as unique counts via HyperLogLog, TopK via frequency sketches
 
-
           At Twitter, LDC aggregates on the order of tens of millions of incoming events per second, and serves millions of 
           incoming analytic queries per second over petabytes of aggregate data at extremely low latency (<100ms p99).  
           LDC supports multiple storage backends such as Druid, Bigtable, BigQuery, and CockroachDB.
 
-
           I designed the system, implemented most major parts of it, and built a team of 15+ developers around it.
           Additionally, I evangelized it within Twitter to drive adoption of it both within and outside of our 
           organization, growing it from just a few revenue datasets to 20+.
+      
+      - name: Beam/Dataflow
+        summary: |
+          A major portion of the work on LDC was revamping the streaming and batch data processing story at Twitter.
+          In order to do the processing that LDC required in an efficient and cost effective way, we needed a new,
+          more sophisticated data processing engine.  In 2017 I began evaluating several technologies and chose Beam (running on Google Dataflow) as the system to build our aggregation engine on.  
+
+          Over the next several years, I evangelized Beam/Dataflow within Twitter, driving significant adoption 
+          across the entire company.  By 2022 we had grown to 600+ pipelines running on Beam across Twitter.  
+          As mentioned above, I, along with senior management, lead an effort to reorganize our team from the 
+          revenue to platform org in order to better be able to drive Beam adoption across the company.
+
+          As part of working on Beam, I was the largest contributor to our internal Beam libraries (with 20+ contributors within Twitter), as well as a [committer](https://github.com/apache/beam/pulls?q=is%3Apr+author%3Asteveniemitz+is%3Aclosed) to the OSS Beam project.  My work on the Dataflow runner (in our fork) around monitoring and optimization allowed us to get significantly more performance from it than the stock runner, leading to significant cost savings.  Many of the optimizations were then merged upstream to the OSS runner.
+
+      - name: finagle-grpc
+        summary: |
+          Twitter uses [Finagle](https://github.com/twitter/finagle) for almost all RPCs.  The library supports various protocols via an easily extensible model.
+
+          I collaborated with [Vladimir](https://github.com/vkostyukov) from the CSL team
+          to build a gRPC client and server on top of finagle.  Both are fully compatible with
+          "standard" gRPC clients/servers and use the standard generated protobuf stubs.
+
+          The introduction of finagle-grpc unlocked the ability for engineers at Twitter to much
+          more easily interoperate with gRPC servers in key areas such as ML and Big Data and was
+          quickly adopted across multiple teams.
+
+      - name: JVM Runtime Code-Generation
+        summary: |
+          A common performance challenge at Twitter was efficiently serializing and deserializing data based on a schema.
+          While ahead-of-time compiled options such as [Scrooge](https://github.com/twitter/scrooge) worked well, we 
+          more frequently needed more flexibility than could be achieved with static compiled schemas.  Additionally, for
+          formats such as [Apache Avro](https://github.com/apache/avro), it is essentially impossible to compile a reader
+          for a given schema ahead-of-time.
+
+          My solution to the performance problem was to build a runtime code generation library that could be used to
+          build readers and writers from schemas dynamically at runtime.  Once that library was in place, I could then 
+          quickly build code generators for various formats quickly.  
+          
+          While the JVM has a few good code generation libraries such as [ASM](https://asm.ow2.io/) or [ByteBuddy](https://bytebuddy.net), they are very low
+          level and difficult to use without deep knowledge of the JVM.  My library instead was built on expression
+          trees, targeting a much higher-level abstraction.  Rather than building up sets of JVM opcodes and stack 
+          manipulations, developers instead build up much higher level expression trees.  
+
+          This library was very successful, and leveraged significantly by Twitter for avro and thrift formats.  With 
+          avro for example, our library built on runtime code-generation performs over 5x faster than the OSS one, 
+          resulting in massive performance and cost savings.
 
       - name: Data Format Optimization
-        summary: >
+        summary: |
           Twitter uses [Scrooge](https://github.com/twitter/scrooge) and [Apache Avro](https://github.com/apache/avro)
-          on the JVM extensively for at-rest data storage.     
+          on the JVM extensively for at-rest data storage.
+
+          Using the runtime code-gen libraries above, I built optimized codecs for both Avro and Scrooge, both which 
+          operate at schemas (native avro schemas for avro and schemer schemas for thrift).  The avro codec is 5x 
+          faster than the native avro version, and scrooge 10x faster.
+
+          These codecs are widely used at Twitter, providing a significant performance and cost benefit when used.
 
       - name: Scalding to Beam Migration
-        summary: >
+        summary: |
           Twitter has 4,000+ batch processing jobs written in [scalding](https://github.com/twitter/scalding).
           Developed a strategy, built a MVP, and lead a team to develop tooling to automatically translate 
           scalding jobs into beam jobs, and run them on Dataflow with zero code changes required.
@@ -118,13 +171,13 @@ work:
     position: "Software Engineer"
     startDate: "2014-11-01"
     endDate: "2015-05-01"
-    summary: >
+    summary: |
       TellApart was an ad-tech company doing Dynamic Product Advertising on the major ad exchanges.  It was 
       acquired by Twitter in 2015.  I worked on the team responsible for running AWS automation, 
       Aurora/Mesos, and monitoring infrastructure.
     projects: 
       - name: Aurora/Mesos
-        summary: >
+        summary: |
           The TellApart infrastructure ran across 1000s of AWS instances in multiple zones.  Previously
           developers would deploy their changes across the fleet using different bespoke scripts.  I 
           lead the rollout of Aurora/Mesos to standardize deployments and homogenize compute resources.
@@ -132,24 +185,36 @@ work:
           I spearheaded an effort in the OSS Aurora community to add support for Docker containers to
           Aurora, working closely with the Aurora community and eventually becoming a member of the Aurora
           PMC.
+      - name: Scales
+        summary: |
+          TellApart used finagle extensively (specifically thriftmux) for JVM services (such as the exchange 
+          bidders), but also used Python for a significant number of services.  The use of thriftmux made RPC 
+          between JVM and Python services difficult since there was no first-class support for it in Python.
+
+          I designed and implemented a RPC stack in Python called [Scales](https://github.com/steveniemitz/scales)
+          that fully implemented the thriftmux protocol, along with service discovery, request cancellation, 
+          client-side load balancing, and observability.
+
+          Scales was used successfully at scale to generate millions of client QPS across the services at 
+          TellApart, greatly increasing the reliability of those RPCs vs the existing thrift libraries.
   - company: "Blackstone"
     position: "Software Engineer"
     startDate: "2011-10-01"
     endDate: "2014-11-01"
-    summary: >
+    summary: |
       Blackstone is an Alternative Asset Management firm.  I joined in 2011 with the new CTO and 
       worked to form a brand new software engineering team from the ground up.
     projects: 
       - name: BXAccess
-        summary: >
+        summary: |
           BXAccess is the investor-facing portal for Blackstone.  Investors could log in to get
           documents and view their portfolios.  I lead the team, designed and implemented most
           major functionality of the platform.
       - name: Niagara
-        summary: >
+        summary: |
           Niagara is the platform that calculates the per-LP (and GP) returns for most Blackstone 
-          funds.  Accountants enter transactions into it, and it can generate various reports after
-          running 
+          funds.  Accountants enter transactions into it which feed into various configurable calculations.
+          Accountants can run ad-hoc reports from it, or generate pre-configured reports 
   - company: "CapitalIQ"
     position: "Software Engineer"
     startDate: "2007-08-01"
@@ -181,23 +246,35 @@ publications:
     website: "https://web.archive.org/web/20160310121210/https://www.tellapart.com/imagine-theres-no-server/"
     summary: "Using Docker, Aurora, and Mesos to deploy applications at TellApart"
 skills:
-  - name: "Web Development"
+  - name: "Scala"
     level: "Master"
     keywords:
-      - "HTML"
-      - "CSS"
-      - "Javascript"
-  - name: "Compression"
+      - "JVM"
+      - "Functional"
+  - name: "Java"
+    level: "Master"
+    keywords: 
+      - "JVM"
+      - "OOP"
+  - name: "JVM"
     level: "Master"
     keywords:
-      - "Mpeg"
-      - "MP4"
-      - "GIF"
-languages:
-  - language: "English"
-    fluency: "Native speaker"
-interests:
-  - name: "Wildlife"
+      - "Debugging"
+      - "Optimization"
+  - name: "Python"
+    level: "intermediate"
+    keywords: 
+      - "Scripting"
+  - name: "RPC"
+    level: "Master"
     keywords:
-      - "Ferrets"
-      - "Unicorns"
+      - "Finagle"
+      - "gRPC"
+      - "Load Balancing"
+      - "Resiliency"
+  - name: "Data Formats"
+    level: "Master"
+    keywords:
+      - "Avro"
+      - "Thrift"
+      - "Protobuf"
