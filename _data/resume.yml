@@ -32,7 +32,7 @@ work:
     summary: |
       With 8 years of experience on multiple teams at Twitter, I've had the unique opportunity 
       to see the impact of my decisions and designs over long time periods.  I've designed, built,
-      and lead teams for multiple systems that push the limits of the industry.  My ability to build deep 
+      and led teams for multiple systems that push the limits of the industry.  My ability to build deep 
       cross-organizational relationships over that time allowed me to positively transform multiple 
       organizations and improve large portions of Twitter's tech stack. 
     roles:
@@ -103,10 +103,14 @@ work:
 
           Over the next several years, I evangelized Beam/Dataflow within Twitter, driving significant adoption 
           across the entire company.  By 2022 we had grown to 600+ pipelines running on Beam across Twitter.  
-          As mentioned above, I, along with senior management, lead an effort to reorganize our team from the 
+          As mentioned above, I, along with senior management, led an effort to reorganize our team from the 
           revenue to platform org in order to better be able to drive Beam adoption across the company.
 
-          As part of working on Beam, I was the largest contributor to our internal Beam libraries (with 20+ contributors within Twitter), as well as a [committer](https://github.com/apache/beam/pulls?q=is%3Apr+author%3Asteveniemitz+is%3Aclosed) to the OSS Beam project.  My work on the Dataflow runner (in our fork) around monitoring and optimization allowed us to get significantly more performance from it than the stock runner, leading to significant cost savings.  Many of the optimizations were then merged upstream to the OSS runner.
+          As part of working on Beam, I started, and was the largest contributor to our internal Beam libraries (with 20+ 
+          contributors within Twitter), as well as a [committer](https://github.com/apache/beam/pulls?q=is%3Apr+author%3Asteveniemitz+is%3Aclosed) 
+          to the OSS Beam project.  My work on the Dataflow runner (in our fork) around monitoring and optimization 
+          allowed us to get significantly more performance from it than the stock runner, leading to significant cost savings.  
+          Many of the optimizations were then merged upstream to the OSS runner.
 
       - name: finagle-grpc
         summary: |
@@ -152,18 +156,6 @@ work:
 
           These codecs are widely used at Twitter, providing a significant performance and cost benefit when used.
 
-      - name: Scalding to Beam Migration
-        summary: |
-          Twitter has 4,000+ batch processing jobs written in [scalding](https://github.com/twitter/scalding).
-          Developed a strategy, built a MVP, and lead a team to develop tooling to automatically translate 
-          scalding jobs into beam jobs, and run them on Dataflow with zero code changes required.
-
-          - Wrote a proposal and achieved high-level buy-in from org level leadership, 
-            including cost analysis of scalding vs dataflow and multi-year execution plan.
-          - Prototyped an AST-translation layer to translate scalding execution graphs to beam.
-          - Staffed and lead a team of 2-5 developers to drive the project post-MVP.
-          - Optimized job runtime based on profiler feedback to achieve parity with (and exceed) scalding performance.
-
       - name: TC&#9889;DC (Twitter Cloud Data-Center)
         summary: >
           Summary
@@ -180,7 +172,7 @@ work:
         summary: |
           The TellApart infrastructure ran across 1000s of AWS instances in multiple zones.  Previously
           developers would deploy their changes across the fleet using different bespoke scripts.  I 
-          lead the rollout of Aurora/Mesos to standardize deployments and homogenize compute resources.
+          led the rollout of Aurora/Mesos to standardize deployments and homogenize compute resources.
 
           I spearheaded an effort in the OSS Aurora community to add support for Docker containers to
           Aurora, working closely with the Aurora community and eventually becoming a member of the Aurora
@@ -208,19 +200,68 @@ work:
       - name: BXAccess
         summary: |
           BXAccess is the investor-facing portal for Blackstone.  Investors could log in to get
-          documents and view their portfolios.  I lead the team, designed and implemented most
+          documents and view their portfolios.  I led the team, designed and implemented most
           major functionality of the platform.
       - name: Niagara
         summary: |
           Niagara is the platform that calculates the per-LP (and GP) returns for most Blackstone 
           funds.  Accountants enter transactions into it which feed into various configurable calculations.
-          Accountants can run ad-hoc reports from it, or generate pre-configured reports 
+          Accountants can run ad-hoc reports from it, or generate pre-configured reports such as quarterly 
+          investor statements.  
+
+          The design of Niagara was a significant departure from previous iterations of the accounting system.
+          Rather than hard-coded calculations, the entire system was designed from the ground up to be completely
+          dynamic, with all calculations stored in a configuration database.  Users could change, and more importantly,
+          view and audit each data-point that was calculated by the system.
+
+          I led the team, doing work from building the front-end UI (HTML/JS) to backend API and Database work.  I took
+          over the project in the middle of its execution, and with my leadership, we turned the project around, 
+          quickly iterating from a non-working, hard-coded prototype to onboarding over 10 funds with dynamic calculation
+          in less than a year.  
+      - name: Core Infrastructure
+        summary: |
+          I ran the core infrastructure library team, building most of the libraries and infrastructure automation (CI/CD, 
+          deployment, etc), and staffing a team around it.
+
+          This included libraries for:
+            - RPC (WPF)
+            - Data Access
+            - Logging
+            - Authentication / Authorization
+           
   - company: "CapitalIQ"
     position: "Software Engineer"
     startDate: "2007-08-01"
     endDate: "2011-10-01"
     summary: >
-      A Summary
+      CapitalIQ (now S&P Capital IQ) is a financial research platform.  I joined in 2007 and worked on various 
+      projects.
+    projects:
+      - name: Transcripts
+        summary: |
+          I, along with a product manager, built and launched a global transcription product in 2010 from the ground up.
+          The product allowed users of the platform to view earnings calls being transcribed in real-time.
+
+          I teamed up with the product manager, as well as a professional transcriptionist to staff a large (100+)
+          team of transcriptionists that would be transcribing calls in real time.  This included sourcing a (foreign) office, 
+          building an IT team, and logistics for getting them the required equipment to bootstrap the team.  
+
+          I evaluated the technology of multiple professional transcription products, meeting with their developers
+          to determine the feasibility of integrating them with the platform we wanted to build. I built the realtime 
+          transcript ingestion platform that would power this product, as well as the prototype for the front-end of it. 
+          I then staffed up a team to help build out the collection tooling as well as the front end.  
+          At peak the system handled 100s of calls running concurrently. 
+      - name: Infrastructure
+        summary: |
+          I worked with a team of 3 other senior developers on the infrastructure and production support team.  This
+          involved building deployment automation, CI/CD, and core libraries.
+
+          One particularly interesting project I worked on as part of this team was an automatic thread-dumper service
+          for ASP.NET.  It allowed ~zero pause thread stack collection in .NET applications and allowed us to track down
+          various application stalls, reducing the p99 latency of commonly accessed areas of the website by as much as 90%.
+          I wrote more about this, and eventually expanded its scope to an entire debugging library.  
+          
+          Read more [here](../blog/2011-04-28-building-a-mixed-mode-stack-walker-part-1)
 education:
   - institution: "Rensselaer Polytechnic Institute"
     area: "Computer Science"
