@@ -61,6 +61,16 @@
             {% include components/from-to.html from=project.startDate to=project.endDate format=from_to_format %}
           </p>
         {% endif %}
+        {% if project.stats %}
+        <div class="project-stats">
+          <span class="commits">{{ project.stats.commits }}</span> commits 
+          {% if project.stats.commit_pct %}
+          (<span class="commits">{{ project.stats.commit_pct }}%</span> of total)
+          {% endif %} 
+          , <span class="diff-add">+{% include number-with-commas.html number=project.stats.add %}</span>, 
+          <span class="diff-remove">-{% include number-with-commas.html number=project.stats.remove %}</span>
+        </div>
+        {% endif %}
         {{ project.summary | markdownify }}
       </div>
     {% endfor %}

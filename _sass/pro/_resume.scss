@@ -151,6 +151,25 @@
     margin-left: .25rem;
   }
 
+  .project-stats {
+    font-size: 12px;
+    margin-bottom: 10px;
+
+    .commits {
+      font-weight: 600;
+    } 
+
+    .diff-add {
+      color: #1a7f37;
+      font-weight: 600;
+    }
+
+    .diff-remove {
+      color: #cf222e;
+      font-weight: 600;
+    }
+  }
+
   @media screen and (min-width: $break-point-5) {
     .fr { float: right }
     .column-3-5 { width: 66.67% }

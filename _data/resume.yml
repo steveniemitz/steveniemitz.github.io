@@ -81,6 +81,12 @@ work:
 
     projects:
       - name: Large Data Collider (LDC)
+        language: Scala
+        stats:
+          add: 163483
+          remove: 64456
+          commits: 524
+          commit_pct: 34
         summary: |
           LDC is a platform that handles aggregating and querying analytic data.  It it used at Twitter 
           to power most user and advertiser facing analytics, such as those for tweets, ads, and videos.
@@ -96,6 +102,12 @@ work:
           organization, growing it from just a few revenue datasets to 20+.
       
       - name: Beam/Dataflow
+        language: Scala
+        stats:
+          add: 24270
+          remove: 4864
+          commits: 102
+          commit_pct: 19
         summary: |
           A major portion of the work on LDC was revamping the streaming and batch data processing story at Twitter.
           In order to do the processing that LDC required in an efficient and cost effective way, we needed a new,
@@ -113,6 +125,12 @@ work:
           Many of the optimizations were then merged upstream to the OSS runner.
 
       - name: finagle-grpc
+        language: Scala
+        stats:
+          add: 2782
+          remove: 610
+          commits: 10
+          commit_pct: 22
         summary: |
           Twitter uses [Finagle](https://github.com/twitter/finagle) for almost all RPCs.  The library supports various protocols via an easily extensible model.
 
@@ -125,6 +143,12 @@ work:
           quickly adopted across multiple teams.
 
       - name: JVM Runtime Code-Generation
+        language: Scala
+        stats:
+          add: 4993
+          remove: 275
+          commits: 17
+          commit_pct: 100
         summary: |
           A common performance challenge at Twitter was efficiently serializing and deserializing data based on a schema.
           While ahead-of-time compiled options such as [Scrooge](https://github.com/twitter/scrooge) worked well, we 
@@ -146,6 +170,12 @@ work:
           resulting in massive performance and cost savings.
 
       - name: Data Format Optimization
+        language: Scala
+        stats:
+          add: 22271
+          remove: 3687
+          commits: 31
+          commit_pct: 88
         summary: |
           Twitter uses [Scrooge](https://github.com/twitter/scrooge) and [Apache Avro](https://github.com/apache/avro)
           on the JVM extensively for at-rest data storage.
@@ -156,9 +186,6 @@ work:
 
           These codecs are widely used at Twitter, providing a significant performance and cost benefit when used.
 
-      - name: TC&#9889;DC (Twitter Cloud Data-Center)
-        summary: >
-          Summary
   - company: "TellApart"
     position: "Software Engineer"
     startDate: "2014-11-01"
@@ -169,6 +196,11 @@ work:
       Aurora/Mesos, and monitoring infrastructure.
     projects: 
       - name: Aurora/Mesos
+        language: Java, Python
+        stats:
+          add: 1339
+          remove: 209
+          commits: 9
         summary: |
           The TellApart infrastructure ran across 1000s of AWS instances in multiple zones.  Previously
           developers would deploy their changes across the fleet using different bespoke scripts.  I 
@@ -178,6 +210,11 @@ work:
           Aurora, working closely with the Aurora community and eventually becoming a member of the Aurora
           PMC.
       - name: Scales
+        language: Python
+        stats:
+          add: 22515
+          remove: 14076
+          commits: 106
         summary: |
           TellApart used finagle extensively (specifically thriftmux) for JVM services (such as the exchange 
           bidders), but also used Python for a significant number of services.  The use of thriftmux made RPC 

@@ -35,11 +35,11 @@
   {% if image_base %}<meta property="image" content="{% include_cached smart-url url=image_base %}"/>{% endif %}
 
   <a href="{{ project.url | relative_url }}" class="no-hover no-print-link flip-project" tabindex="-1">
+    {% if screenshot %}
     <div class="project-card-img aspect-ratio sixteen-nine flip-project-img {% unless screenshot %}fallback-img{% endunless %}">
-      {% if screenshot %}
         {% include_cached components/hy-img.html img=screenshot alt=project.title sizes=sizes width=864 height=486 %}
-      {% endif %}
     </div>
+    {% endif %}
   </a>
   <h3 class="project-card-title flip-project-title">
     <a href="{{ project.url | relative_url }}" class="flip-title" property="mainEntityOfPage">{{ project.title }}</a>
