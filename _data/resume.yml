@@ -261,7 +261,7 @@ work:
           deployment, etc), and staffing a team around it.
 
           This included libraries for:
-            - RPC (WPF)
+            - RPC (WCF)
             - Data Access
             - Logging
             - Authentication / Authorization
