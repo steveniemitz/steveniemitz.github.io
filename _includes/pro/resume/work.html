@@ -61,6 +61,15 @@
             {% include components/from-to.html from=project.startDate to=project.endDate format=from_to_format %}
           </p>
         {% endif %}
+
+        {% if project.technologies %}
+        <ul class="tags">
+          {% for key in project.technologies %}
+            <li class="tag">{{ key }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+
         {% if project.stats %}
         <div class="project-stats">
           <span class="commits">{{ project.stats.commits }}</span> commits 

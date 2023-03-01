@@ -80,7 +80,7 @@ work:
 
     projects:
       - name: Large Data Collider (LDC)
-        language: Scala
+        technologies: [scala, finagle, grpc, gcp, bigtable, bigquery, beam, dataflow, pubsub, kafka, avro]
         stats:
           add: 163483
           remove: 64456
@@ -90,7 +90,12 @@ work:
           LDC is a platform that handles aggregating and querying analytic data.  It it used at Twitter 
           to power most user and advertiser facing analytics, such as those for tweets, ads, and videos.
           LDC supports most common aggregation functions (sum, min, max) as well as more complex probabilistic 
-          aggregations such as unique counts via HyperLogLog, TopK via frequency sketches
+          aggregations such as unique counts via HyperLogLog and TopK via frequency sketches.
+
+          The transition from ad-hoc analytics to LDC allowed product teams to quickly build scalable analytics 
+          into their products easily, without needing to worry about all of the complexities involved.  In our
+          ads analytics product for example, product teams were able to add new dimensions and aggregations in hours
+          end to end, rather than the weeks or months it previously took.  
 
           At Twitter, LDC aggregates on the order of tens of millions of incoming events per second, and serves millions of 
           incoming analytic queries per second over petabytes of aggregate data at extremely low latency (<100ms p99).  
@@ -101,7 +106,7 @@ work:
           organization, growing it from just a few revenue datasets to 20+.
       
       - name: Beam/Dataflow
-        language: Scala
+        technologies: [java, grpc, avro, protobuf, gcp]
         stats:
           add: 24270
           remove: 4864
@@ -110,7 +115,8 @@ work:
         summary: |
           A major portion of the work on LDC was revamping the streaming and batch data processing story at Twitter.
           In order to do the processing that LDC required in an efficient and cost effective way, we needed a new,
-          more sophisticated data processing engine.  In 2017 I began evaluating several technologies and chose Beam (running on Google Dataflow) as the system to build our aggregation engine on.  
+          more sophisticated data processing engine.  In 2017 I began evaluating several technologies and chose Beam 
+          (running on Google Dataflow) as the system to build our aggregation engine on.  
 
           Over the next several years, I evangelized Beam/Dataflow within Twitter, driving significant adoption 
           across the entire company.  By 2022 we had grown to 600+ pipelines running on Beam across Twitter.  
@@ -123,15 +129,22 @@ work:
           allowed us to get significantly more performance from it than the stock runner, leading to significant cost savings.  
           Many of the optimizations were then merged upstream to the OSS runner.
 
+          The transition from scalding (batch) or heron (streaming) to Beam unlocked multiple significant advantages for 
+          product teams.  Beam is significantly more reliable and scalable than existing solutions, allowing teams to focus
+          on developing value-add for the busniess rather than operational burden.  Additionally, many jobs developed in Beam
+          simply could not run on scalding due to scale.  Being able to run these massive jobs allowed many teams to innovate in
+          new ways and develop new products that would not be possible previously. 
+
       - name: finagle-grpc
-        language: Scala
+        technologies: [finagle, grpc, protobuf, http2]
         stats:
           add: 2782
           remove: 610
           commits: 10
           commit_pct: 22
         summary: |
-          Twitter uses [Finagle](https://github.com/twitter/finagle) for almost all RPCs.  The library supports various protocols via an easily extensible model.
+          Twitter uses [Finagle](https://github.com/twitter/finagle) for almost all RPCs.  The library supports various 
+          protocols via an easily extensible model.
 
           I collaborated with [Vladimir](https://github.com/vkostyukov) from the CSL team
           to build a gRPC client and server on top of finagle.  Both are fully compatible with
@@ -142,7 +155,7 @@ work:
           quickly adopted across multiple teams.
 
       - name: JVM Runtime Code-Generation
-        language: Scala
+        technologies: [scala, java, jvm, ByteBuddy]
         stats:
           add: 4993
           remove: 275
@@ -169,7 +182,7 @@ work:
           resulting in massive performance and cost savings.
 
       - name: Data Format Optimization
-        language: Scala
+        technologies: [scala, avro, thrift]
         stats:
           add: 22271
           remove: 3687
@@ -195,7 +208,7 @@ work:
       Aurora/Mesos, and monitoring infrastructure.
     projects: 
       - name: Aurora/Mesos
-        language: Java, Python
+        technologies: [java, python, docker]
         stats:
           add: 1339
           remove: 209
@@ -209,7 +222,7 @@ work:
           Aurora, working closely with the Aurora community and eventually becoming a member of the Aurora
           PMC.
       - name: Scales
-        language: Python
+        technologies: [python, thriftmux, tcp]
         stats:
           add: 22515
           remove: 14076
@@ -355,3 +368,20 @@ skills:
       - "Avro"
       - "Thrift"
       - "Protobuf"
+  - name: "Databases"
+    level: Master
+    keywords:
+      - Bigtable
+      - BigQuery
+      - Postgres
+      - MSSQL
+      - Calcite
+  - name: Data Processing
+    level: Master
+    keywords:
+      - Beam
+      - Dataflow
+      - Flink
+      - Scalding
+      - Hadoop
+      - Heron
